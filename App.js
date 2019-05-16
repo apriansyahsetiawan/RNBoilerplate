@@ -6,44 +6,31 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { AsyncStorage } from 'react-native';
+import { Provider } from 'react-redux';
+import { compose, applyMiddleware, createStore } from 'redux';
+import { persistStore, autoRehydrate } from 'redux-persist';
+import logger from 'redux-logger';
+import thunk from 'redux-thunk';
+import rootReducers from './src/redux/reducers/index';
+import AppNavigator from './src/navigations/AppNavigator';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
-  android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
+const store = createStore(
+  rootReducers,
+  compose(
+    applyMiddleware(thunk, logger),
+    autoRehydrate()
+  )
+);
 
-type Props = {};
-export default class App extends Component<Props> {
+persistStore(store, { storage: AsyncStorage });
+export default class App extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
-      </View>
+      <Provider store={store}>
+        <AppNavigator />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
