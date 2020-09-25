@@ -1,4 +1,7 @@
-# React-Native-BoilerPlate
+# React Native Boilerplate
+
+### `Description`
+This boilerplate uses digest authentication settings, you can use other authentication settings by adding a configuration file in the helper folder. Boilerplate has not been updated.
 
 ### `Redux Implementation`
 
