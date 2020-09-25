@@ -1,12 +1,12 @@
 # React-Native-BoilerPlate
 
-### Redux Implementation
+### `Redux Implementation`
 
-<!-- <br>
+<br>
 <p align="center">
-  <img src="https://github.com/ZahraHeydari/ArtGallery/blob/master/diagram.png" width="500"/>
+  <img src="https://github.com/apriansyahsetiawan/RNBoilerplate/blob/master/Redux%20Data%20Flow.png" width="500"/>
 </p>
-<br> -->
+<br>
 
 ### `Package / Library`
 
